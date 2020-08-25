@@ -18,12 +18,12 @@ pipeline {
                 sh 'mvn test'
             }
         } 
-        stage('create and push docker image') {
+        stage('build and push docker image') {
             steps {
               script {  
                  checkout scm
                  docker.withRegistry('', 'DockerRegistryID')
-                 def customImage= docker.build("10292019/hol-pipeline:${env.BUILD_ID}")         
+                 def customImage = docker.build("10292019/hol-pipeline:${env.BUILD_ID}")         
                  customImage.push()                    
             }
         }
