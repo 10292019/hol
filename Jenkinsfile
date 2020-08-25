@@ -20,11 +20,11 @@ pipeline {
         } 
         stage('create and push docker image') {
             steps {
-                script {  
-                   checkout scm
-                   docker.withRegistry('', 'DockerRegistryID')
-                   def customImage= docker.build("10292019/hol-pipiline:${env.BUILD_ID}")         
-                   customImage.push()                    
+              script {  
+                 checkout scm
+                 docker.withRegistry('', 'DockerRegistryID')
+                 def customImage= docker.build("10292019/hol-pipeline:${env.BUILD_ID}")         
+                 customImage.push()                    
             }
         }
     }
