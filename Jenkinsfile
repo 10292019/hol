@@ -4,11 +4,7 @@ pipeline {
         maven 'M2_HOME'
     }    
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+       
           stage('build') {
             steps {
                 echo 'hello build'
@@ -17,14 +13,18 @@ pipeline {
                 sh 'mvn package'
             }
         }
-          stage('deploy') {
+          stage('test') {
             steps {
-                echo 'Hello World'
+                sh 'mvn test'
             }
         } 
-        stage('test') {
+        stage('create and push docker image') {
             steps {
-                echo 'Hello World'
+                script {  
+                   checkout scm
+                   docker.withRegistry(", 'dockerUserID')
+                   def customImage= docker.build("10292019/hol-pipiline:${env.Built_ID}")         
+                   customImage.push()                    
             }
         }
     }
