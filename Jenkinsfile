@@ -25,6 +25,7 @@ pipeline {
             steps {
               script {  
                  checkout scm
+                 
                  docker.withRegistry('', 'DockerRegistryID') {
                  def customImage = docker.build("10292019/hol-pipeline:${env.BUILD_ID}")
                  def customImage = docker.build("10292019/hol-pipeline")      
