@@ -27,7 +27,7 @@ pipeline {
 
                  docker.withRegistry('', 'DockerRegistryID') {
                  def customImage = docker.build("10292019/hol-pipeline:${env.BUILD_ID}")
-                 def customImage = docker.build("10292019/hol-pipeline")      
+                 def CustomImage = docker.build("10292019/hol-pipeline")      
                  customImage.push()
                  customImage1.push() 
                  }
